@@ -49,7 +49,7 @@
                       <input type="submit" value="Salvar" class="btn btn-primary">
                   </div>
                   <div class="col-sm-6">
-                    <a href="#" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('index') }}" class="btn btn-secondary">Cancelar</a>
                   </div>
                       
                   </div>
