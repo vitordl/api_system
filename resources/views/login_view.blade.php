@@ -20,7 +20,7 @@
               <div class="mb-3 row">
                   <label class="col-sm-3 col-form-label text-end">Password</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" >
+                  <input type="password" class="form-control" name="password">
                   </div>
               </div>
 

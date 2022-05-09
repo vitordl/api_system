@@ -16,7 +16,7 @@ class CreateItemSecretsTable extends Migration
         Schema::create('item_secrets', function (Blueprint $table) {
             $table->id();
             $table->string('userDB');
-            //$table->hash()
+            $table->string('passwordDB');
             $table->timestamps();
         });
     }

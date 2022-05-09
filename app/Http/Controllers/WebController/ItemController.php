@@ -6,28 +6,47 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemSecret;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ItemController extends Controller
 {
     
     public function index()
     {
-        return view('login_view');
+      return view('login_view');
+
+       //so pra salvar no banco pra teste
+
+    //    $pass = Hash::make('fakedemais');   //senha321
+    //    ItemSecret::insert([
+    //        'userDB' => 'fakeinsight',    //vitordl123
+    //        'passwordDB' => $pass
+    //    ]);
+
     }
 
+
+
     public function logged_in(Request $request){
-        // $all_data = $request->all();
-
-        //metodo pra validar o login seria aqui?
+        
         if(isset($request->user) && isset($request->password)){
-            $userDB = ItemSecret::get('user');
-            $passwordDB = ItemSecret::get('password');
+          
 
-            if($request->user == $userDB && $request->password == $passwordDB){
-                return view('logged_in_view', ['user' => $userDB]);
+            $infoDB = ItemSecret::get();
+    
+       
+            foreach($infoDB as $info){
+                if (Hash::check($request->password, $info->passwordDB)) {
+                
+                    if($request->user == $info->userDB){
+                        return view('logged_in_view', ['user' => $info->userDB]);
+                    }
+                }        
             }
             
         }
+
+       return "Usuario ou senha incorretos.";
 
         
     }
