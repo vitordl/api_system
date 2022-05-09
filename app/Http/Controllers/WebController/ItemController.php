@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Item;
+use App\Models\ItemSecret;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -16,8 +17,19 @@ class ItemController extends Controller
 
     public function logged_in(Request $request){
         // $all_data = $request->all();
-        $username = $request->user;
-        return view('logged_in_view', ['user' => $username]);
+
+        //metodo pra validar o login seria aqui?
+        if(isset($request->user) && isset($request->password)){
+            $userDB = ItemSecret::get('user');
+            $passwordDB = ItemSecret::get('password');
+
+            if($request->user == $userDB && $request->password == $passwordDB){
+                return view('logged_in_view', ['user' => $userDB]);
+            }
+            
+        }
+
+        
     }
 
     public function get_all_data(){
