@@ -72,6 +72,9 @@ class ItemController extends Controller
    
     public function store(Request $request)
     {
+        //por algum motivo esse metodo nao puxou dai eu criei uma rota
+        //para o save e fiz da mesma forma
+        
         // $dados = Item::create($request->all());
 
         // return $dados;

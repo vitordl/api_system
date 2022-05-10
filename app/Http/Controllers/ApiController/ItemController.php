@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -12,7 +13,22 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::get();
+        
+        //parte da criação do arquivo json
+        $item_info = Item::get()->toJson(JSON_PRETTY_PRINT);
+        Storage::put('item_info.json', $item_info);
+        //fim da parte da criação do arquivo json
+
         return response()->json($items);
+   
+    }
+
+    //apenas para testar metodos sem colocar pra rodar, mas sim, organizar a escrita
+    public function methodTest(){
+
+        $item_info = Item::get()->toJson(JSON_PRETTY_PRINT);
+        Storage::put('item_info.json', $item_info);
+
     }
 
     
@@ -26,9 +42,9 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $items = Item::create($request->all());
-        return $items;
+        return $items;   
 
-        
+
     }
 
     
@@ -58,7 +74,7 @@ class ItemController extends Controller
         //pego do stackoverflow
         //Item::where('id',$id)->first()->update($request->all());
 
-        //bom o erro estava em usar o get e update ao mesmo tempo heheheh, 
+        //bom o erro estava em usar o get e update ao mesmo tempo, 
         //ou voce faz o get ou update , escolha.
         //get, create, update, delete. 
     }
