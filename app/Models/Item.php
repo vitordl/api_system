@@ -11,6 +11,8 @@ class Item extends Model
     use HasFactory;
     use SoftDeletes;
 
+    
+
     protected $fillable = ['item_name', 'description', 'author', 'year'];
     
 }
