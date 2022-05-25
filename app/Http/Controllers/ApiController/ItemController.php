@@ -84,6 +84,6 @@ class ItemController extends Controller
     {
         Item::where('id', $id)->delete();
 
-        return 'Deletado com sucesso!';
+        return 'Deleted successfull!';
     }
 }
