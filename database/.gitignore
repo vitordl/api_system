@@ -1,1 +1,4 @@
 *.sqlite*
+*ignore_this.js*
+
+
